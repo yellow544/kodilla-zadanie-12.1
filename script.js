@@ -11,9 +11,17 @@ function getJoke() {
   var xhr = new XMLHttpRequest();				
   xhr.open('GET', url);							
   xhr.addEventListener('load', function(){
-    var response = JSON.parse(xhr.response);	
+    var response = JSON.parse(xhr.response);
+    paragraph.innerHTML = response.value.joke;
+
+   	if (!response.value.joke) {
+       	paragraph.innerText = 'Error';
+   	return;
+	}
+
   });
   xhr.send();								
 }
 
 getJoke();	// it generates first joke without pressing button  
+
